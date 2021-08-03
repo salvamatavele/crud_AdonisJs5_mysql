@@ -33,7 +33,7 @@ export default class TodoValidator {
     ]),
     done: schema.string.optional(),
     due: schema.date.optional({
-      format: 'yyyy-mm-dd'
+      format: 'dd/LL/yyyy'
     })
   })
 

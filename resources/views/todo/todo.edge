@@ -30,15 +30,15 @@
                     @endif
                   </div>
                   <div class="form-group">
-                    <label for="quote">Due (optional)</label>
-                    <input type="date" name="due" id="due" class="form-control" value="{{todo.due || ''}}">
+                    <label for="quote">Due</label>
+                    <input type="text" name="due" id="due" class="form-control" value="{{todo.due || ''}}">
                     @if(flashMessages.has('errors.due'))
                         <span class="text-danger">{{flashMessages.get('errors.due')}}</span>
                     @endif
                   </div>
                     <div class="form-group">
                         <label for="desc">*Description</label>
-                        <textarea type="text"  name='desc' id="desc" class="form-control"  placeholder="Write an Description to do here">{{todo.desc || flashMessages.get('desc')}}</textarea>
+                        <textarea type="text"  name='desc' id="desc" rows="6" class="form-control"  placeholder="Write an Description to do here">{{todo.desc || flashMessages.get('desc')}}</textarea>
                         @if(flashMessages.has('errors.desc'))
                         <span class="text-danger">{{flashMessages.get('errors.desc')}}</span>
                         @endif

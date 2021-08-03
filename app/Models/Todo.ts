@@ -22,7 +22,7 @@ export default class Todo extends BaseModel {
   public user: BelongsTo<typeof User>
 
   @column.date({
-    serialize: (value) => value.toFormat('dd LL yyyy')
+    serialize: (value) => value.toFormat('dd/LL/yyyy')
   })
   public due: DateTime
 

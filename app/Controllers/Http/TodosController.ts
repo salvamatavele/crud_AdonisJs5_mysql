@@ -1,7 +1,5 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
-import View from "@ioc:Adonis/Core/View";
-import {schema, rules} from '@ioc:Adonis/Core/Validator'
 import Todo from 'App/Models/Todo';
 import TodoValidator from 'App/Validators/TodoValidator';
 
@@ -15,7 +13,7 @@ export default class TodosController {
     await user?.load('todos')
     return view.render('todo/index',{
       title: 'Todo List',
-      todos: user?.todos
+      todos: user?.todos.map((todo) => todo.toJSON())
     })
   }
 
@@ -66,7 +64,7 @@ export default class TodosController {
     const todo = await Todo.findOrFail(params.id)
     return view.render('todo/todo',{
       title: 'Edit To Do ' + todo.title,
-      todo
+      todo: todo.toJSON()
     })
   }
 
