@@ -1,4 +1,4 @@
-# CRUD abd Auth AdonisJs 5 and mysql
+# CRUD and Auth AdonisJs 5 and mysql
 This is an example for how to create read update and delete  include authentication and create new user ,validation and middleware. I think is one of the right way becouse I based on the official documentation . ENJOY
 
 ### Configurations
