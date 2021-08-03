@@ -1,0 +1,37 @@
+@layout('layouts/master')
+@section('content')
+  <div class="container ">
+    <div class="row">
+        <div class="col-md-4  bg-white p-3 mt-5 shadow no-border rounded offset-md-4">
+          @include('layouts/flash')
+          <form method="POST" action="{{route('register.store')}}">
+            {{ csrfField() }}
+              <div class="form-group">
+                <label for="name">Fullname</label>
+                <input type="text" class="form-control" id="name" name="name"  value="{{flashMessages.get('name') || ''}}" placeholder="Enter Fullname">
+                <span class="text-danger">{{flashMessages.get('errors.name') || ''}}</span>
+              </div><br>
+              <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email"  name="email" value="{{flashMessages.get('email') || ''}}" placeholder="Enter email">
+                <span class="text-danger">{{flashMessages.get('errors.email') || ''}}</span>
+              </div><br>
+              <div class="form-group">
+                <label for="pasword">Password</label>
+                <input type="password" class="form-control" id="password" name="password"  placeholder="Password">
+                <span class="text-danger">{{flashMessages.get('errors.password') || ''}}</span>
+              </div><br>
+              <div class="form-group">
+                <label for="pasword">Confirm Password</label>
+                <input type="password" class="form-control" id="password" name="password_confirmation" placeholder="Confirm Password">
+                <span class="text-danger">{{flashMessages.get('errors.password_confirmation') || ''}}</span>
+              </div>
+              <br>
+              <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary">Regist</button>
+              </div>
+          </form>
+        </div>
+    </div>
+  </div>
+@endsection

@@ -1,0 +1,61 @@
+@layout('layouts/master')
+@section('content')
+
+<div class="container">
+    <div class="text-center">
+      My To Do List
+    </div>
+    @include('layouts/flash')
+    <a class="btn btn-primary btn-s" href="{{ route('todo.create') }}">ADD</a>
+    <div class="row">
+        @each(todo in todos)
+            <div class="col-md-4 mb-4  quote-wrapper">
+                <a href="{{ route('todo.edit', { id: todo.id }) }}" class="w-100">
+                    <div class="card shadow-lg bg-dark text-white">
+                        <div class="card-body">
+                            <blockquote class="blockquote mb-0 ">
+                              <div class=" text-truncate">
+                                <p>{{todo.desc}}</p>
+                              </div>
+
+                                {{--  <p><span class="badge bg-info text-dark">Agendada ate {{todo.due}}</span></p>  --}}
+                                <hr>
+                                <footer class="blockquote-footer">
+                                    <cite > {{todo.title}}</cite>
+                                    <p><strong></strong></p>
+                                </footer>
+                            </blockquote>
+                            {{--  @if(auth.user.id == todo.user_id)  --}}
+                              <div class="float-end">
+                                <form action="{{ route('todo.change', { id: todo.id})}}?_method=PUT" method="post">
+                                  {{ csrfField() }}
+                                  <div class="form-group">
+                                    @if(todo.done === 'on')
+                                    <span class="badge bg-success">Concluida</span>
+                                    @else
+                                    <span class="badge bg-warning text-dark">Pandente</span>
+                                    @endif
+                                    <button class="btn btn-outline-primary btn-sm" type="submit">Alterar</button>
+                                  </div>
+                                </form>
+                              </div>
+                              <div>
+                                <form action="{{ route('todo.destroy', { id: todo.id }) }}?_method=DELETE" method="post">
+                                  {{ csrfField() }}
+                                  <button class="btn btn-outline-danger btn-sm">delete</button>
+                                </form>
+
+                              </div>
+                            {{--  @endif  --}}
+                        </div>
+                    </div>
+                </a>
+            </div>
+        @else
+         <div class="col-md-12 empty-quote text-center">
+                <p class="text-danger">No To Do list created</p>
+         </div>
+        @endeach
+    </div>
+</div>
+@endsection

@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300');
+html,
+body {
+    background-color: #F7F8FA;
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+    color: #46444c;
+    position: relative;
+}
+
+body:before {
+    content: '';
+    background: #5A45FF;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    position: absolute;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: inherit;
+    text-decoration: underline;
+}
+
+p {
+    margin: 0.83rem 0;
+}
+
+.quote-wrapper {
+    margin-top: 20px;
+}
+
+.quote-wrapper a {
+    text-decoration: none;
+}
+
+.quote-wrapper a:hover {
+    color: #ffffff;
+}
+
+.empty-quote {
+    color: #ffffff;
+}
+
+form {
+    padding: 20px;
+}

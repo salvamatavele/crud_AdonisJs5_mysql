@@ -1,0 +1,31 @@
+@layout('layouts/master')
+@section('content')
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 shadow bg-white mt-5 rounded offset-md-4">
+        @include('layouts/flash')
+        <form method="POST" action="{{route('login.check')}}">
+          {{ csrfField() }}
+            <div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email address</label>
+              <input type="email" class="form-control" id="email" name="email" value=""  placeholder="Enter email">
+            </div>
+            <div class="form-group">
+              <label for="pasword">Password</label>
+              <input type="password" class="form-control" id="password" name="password" value="" placeholder="Password">
+            </div>
+            <div class="form-group">
+              <input type="checkbox" name="remember" id="remeber" class="">
+              <label for="remeber">Remember me</label>
+            </div>
+            <br>
+            <div class="d-grid gap-2">
+              <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+@endsection

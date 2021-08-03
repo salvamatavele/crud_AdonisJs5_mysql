@@ -1,0 +1,39 @@
+@layout('layouts.master')
+@section('content')
+
+<div class="container">
+    <div class="text-center">
+        @if(flashMessage('successmessage'))
+            <span class="alert alert-success p-1">{{ flashMessage('successmessage') }}</span>
+        @endif
+    </div>
+    <div class="row">
+        @each(quote in quotes)
+            <div class="col-md-4 mb-4 quote-wrapper">
+                <a href="/view-quote/{{quote.id}}" class="w-100">
+                    <div class="card shadow-lg bg-dark text-white">
+                        <div class="card-body">
+                            <blockquote class="blockquote mb-0">
+                                <p>{{quote.body}}</p>
+                                <footer class="blockquote-footer">
+                                    <cite title="Source Title"> {{quote.username}}</cite>
+                                </footer>
+                            </blockquote>
+                            @if(auth.user.id == quote.user_id)
+                              <div>
+                                <a  href="/edit-quote/{{quote.id}}" class="btn btn-primary">edit</a>
+                                <a href="/delete-quote/{{quote.id}}" class="btn btn-danger">delete</a>
+                              </div>
+                            @endif
+                        </div>
+                    </div>
+                </a>
+            </div>
+        @else
+         <div class="col-md-12 empty-quote text-center">
+                <p>No inspirational quote has been created</p>
+         </div>
+        @endeach
+    </div>
+</div>
+@endsection

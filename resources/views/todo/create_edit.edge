@@ -1,0 +1,55 @@
+@layout('layouts/master')
+@section('content')
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 shadow bg-white mt-5 rounded p-3">
+            <div class="float-right">
+                <a href="{{ route('todo.index') }}" class="btn btn-secondary ">back</a>
+            </div>
+                <br>
+              @include('layouts/flash')
+            <div class="clear-fix"></div>
+                <form method="POST" action="{{route('todo.store')}}">
+                  <h2>Create new To Do</h2>
+                  {{ csrfField() }}
+                  <div class="form-group">
+                    <label for="quote">*Title</label>
+                    <input type="text" name="title" id="title" class="form-control" value="{{flashMessages.get('title') || ''}}">
+                    @if(flashMessages.has('errors.title'))
+                        <span class="text-danger">{{flashMessages.get('errors.title')}}</span>
+                    @endif
+
+                  </div>
+                  <div class="form-group">
+                    <input type="checkbox" name="done" id="done" class="">
+                    <label for="quote">Done</label>
+                    @if(flashMessages.has('errors.done'))
+                        <span class="text-danger">{{flashMessages.get('errors.done')}}</span>
+                    @endif
+                  </div>
+                  <div class="form-group">
+                    <label for="quote">Due (optional)</label>
+                    <input type="date" name="due" id="due" class="form-control">
+                    @if(flashMessages.has('errors.due'))
+                        <span class="text-danger">{{flashMessages.get('errors.due')}}</span>
+                    @endif
+                  </div>
+                    <div class="form-group">
+                        <label for="desc">*Description</label>
+                        <textarea type="text"  name='desc' id="desc" class="form-control"  placeholder="Write an Description to do here">{{flashMessages.get('desc') || ''}}</textarea>
+                        @if(flashMessages.has('errors.desc'))
+                        <span class="text-danger">{{flashMessages.get('errors.desc')}}</span>
+                        @endif
+                    </div>
+                    <br>
+                    <div class="float-end">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
+@endsection

@@ -1,0 +1,54 @@
+<nav class="navbar  navbar-expand-lg navbar-dark bg-dark text-white">
+  <div class="container-fluid">
+  <a class="navbar-brand" ><img src="./favicon.ico" alt="" sizes="20" srcset=""></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+          <li class="nav-item active ">
+              <a class="btn text-white" href="{{ route('home') }}">Home</a>
+          </li>
+      </ul>
+  </div>
+  <div class="navbar-right" id="navbarNav">
+
+          <ul class="navbar-nav">
+                  <li>
+                      <div class="text-right">
+                           <a href="{{route('home')}}" class="btn text-white">Quote</a>
+                           <a href="{{route('todo.index')}}" class="btn text-white">ToDo</a>
+                      </div>
+                  </li>
+                  @if(auth.isLoggedIn)
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      {{ auth.user.name}}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li><hr class="dropdown-divider"></li>
+                      <li>
+                        <form method="POST" action="{{ route('logout') }}">
+                          {{ csrfField() }}
+                            <button  type="submit" class="btn btn-link text-danger">logout</button>
+                      </form>
+                      </li>
+                    </ul>
+                  </li>
+                  @else
+                        <li class="nav-item active pr-2">
+                            <a href="{{ route('login') }}" class="btn btn-outline-danger">
+                              login
+                            </a>
+                        </li>
+                        <li class="nav-item active pr-2">
+                            <a href="{{ route('register') }}" class="btn btn-outline-primary">
+                                Register
+                            </a>
+                        </li>
+                  @endif
+          </ul>
+  </div>
+  </div>
+</nav>
